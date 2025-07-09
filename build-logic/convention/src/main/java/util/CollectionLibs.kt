@@ -19,6 +19,9 @@ object CollectionLibs {
             implementation(libs.coil.compose.get())
             implementation(libs.coil.network.get())
             implementation(libs.coil.video.get())
+            implementation(libs.media3.exoplayer.get())
+            implementation(libs.media3.ui.get())
+            implementation(libs.media3.session.get())
             implementation(libs.timber.get())
         }
     }

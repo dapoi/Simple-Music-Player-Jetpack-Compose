@@ -1,6 +1,7 @@
 @file:Suppress("UnstableApiUsage")
 
-rootProject.name = "StarterTemplate"
+
+rootProject.name = "MusicPlayer"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
@@ -38,4 +39,3 @@ include(":core:common")
 include(":core:data")
 include(":core:navigation")
 include(":feature:home")
-include(":feature:info")

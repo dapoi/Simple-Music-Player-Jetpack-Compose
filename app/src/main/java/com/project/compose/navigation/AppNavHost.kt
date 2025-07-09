@@ -39,14 +39,14 @@ import com.project.compose.navigation.attr.AppNavHostAttr
 @Composable
 internal fun AppNavHost(navGraphs: Set<@JvmSuppressWildcards BaseNavGraph>) {
     val navController = rememberNavController()
-    val navBackStackEntry = navController.currentBackStackEntryAsState()
-    val currentDestination = navBackStackEntry.value?.destination
-    val bottomNavItems = remember { AppNavHostAttr.getBottomNav() }
-    val showBottomNav = remember(currentDestination?.route) {
-        currentDestination?.route?.split('.')?.last().orEmpty() in bottomNavItems.map {
-            it.route.toString()
-        }
-    }
+//    val navBackStackEntry = navController.currentBackStackEntryAsState()
+//    val currentDestination = navBackStackEntry.value?.destination
+//    val bottomNavItems = remember { AppNavHostAttr.getBottomNav() }
+//    val showBottomNav = remember(currentDestination?.route) {
+//        currentDestination?.route?.split('.')?.last().orEmpty() in bottomNavItems.map {
+//            it.route.toString()
+//        }
+//    }
 
     Box(contentAlignment = BottomCenter) {
         NavHost(
@@ -67,42 +67,42 @@ internal fun AppNavHost(navGraphs: Set<@JvmSuppressWildcards BaseNavGraph>) {
          * Remove below code if you don't need bottom navigation
          *
          */
-        AnimatedVisibility(visible = showBottomNav, enter = fadeIn(), exit = fadeOut()) {
-            CompositionLocalProvider(LocalRippleConfiguration provides null) {
-                BottomAppBar(
-                    modifier = Modifier.fillMaxWidth(),
-                    containerColor = colorScheme.surface
-                ) {
-                    bottomNavItems.map { item ->
-                        NavigationBarItem(
-                            selected = currentDestination?.hierarchy?.any {
-                                it.hasRoute(item.route::class)
-                            } == true,
-                            icon = {
-                                Icon(
-                                    imageVector = ImageVector.vectorResource(item.icon),
-                                    contentDescription = item.route::class.simpleName.orEmpty()
-                                )
-                            },
-                            label = { Text(item.label) },
-                            colors = NavigationBarItemDefaults.colors(
-                                selectedIconColor = colorScheme.primary,
-                                selectedTextColor = colorScheme.primary,
-                                unselectedIconColor = Gray,
-                                unselectedTextColor = Gray,
-                                indicatorColor = Transparent
-                            ),
-                            onClick = {
-                                navController.navigateTo(
-                                    route = item.route,
-                                    popUpTo = HomeLandingRoute::class,
-                                    launchSingleTop = true
-                                )
-                            }
-                        )
-                    }
-                }
-            }
-        }
+//        AnimatedVisibility(visible = showBottomNav, enter = fadeIn(), exit = fadeOut()) {
+//            CompositionLocalProvider(LocalRippleConfiguration provides null) {
+//                BottomAppBar(
+//                    modifier = Modifier.fillMaxWidth(),
+//                    containerColor = colorScheme.surface
+//                ) {
+//                    bottomNavItems.map { item ->
+//                        NavigationBarItem(
+//                            selected = currentDestination?.hierarchy?.any {
+//                                it.hasRoute(item.route::class)
+//                            } == true,
+//                            icon = {
+//                                Icon(
+//                                    imageVector = ImageVector.vectorResource(item.icon),
+//                                    contentDescription = item.route::class.simpleName.orEmpty()
+//                                )
+//                            },
+//                            label = { Text(item.label) },
+//                            colors = NavigationBarItemDefaults.colors(
+//                                selectedIconColor = colorScheme.primary,
+//                                selectedTextColor = colorScheme.primary,
+//                                unselectedIconColor = Gray,
+//                                unselectedTextColor = Gray,
+//                                indicatorColor = Transparent
+//                            ),
+//                            onClick = {
+//                                navController.navigateTo(
+//                                    route = item.route,
+//                                    popUpTo = HomeLandingRoute::class,
+//                                    launchSingleTop = true
+//                                )
+//                            }
+//                        )
+//                    }
+//                }
+//            }
+//        }
     }
 }
